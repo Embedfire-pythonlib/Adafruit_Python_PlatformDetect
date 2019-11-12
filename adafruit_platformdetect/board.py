@@ -39,6 +39,9 @@ JETSON_NANO                 = 'JETSON_NANO'
 # Google Coral dev board
 CORAL_EDGE_TPU_DEV          = "CORAL_EDGE_TPU_DEV"
 
+# Embedfire Seeed NPi models
+EMBEDFIRE_SEEED_NPI          = "EMBEDFIRE_SEEED_NPI"
+
 # Various Raspberry Pi models
 RASPBERRY_PI_B_REV1         = "RASPBERRY_PI_B_REV1"
 RASPBERRY_PI_B_REV2         = "RASPBERRY_PI_B_REV2"
@@ -313,6 +316,8 @@ class Board:
             board_id = self._sama5_id()
         elif chip_id == ap_chip.IMX8MX:
             board_id = self._imx8mx_id()
+        elif chip_id == ap_chip.IMX6XXX:
+            board_id = self._imx6xxx_id()
         elif chip_id == ap_chip.ESP8266:
             board_id = FEATHER_HUZZAH
         elif chip_id == ap_chip.SAMD21:
@@ -403,6 +408,13 @@ class Board:
             return CORAL_EDGE_TPU_DEV
         return None
 
+    def _imx6xxx_id(self):
+        """Check what type iMX6XXX board."""
+        board_value = self.detector.get_device_model()
+        if "NPi" in board_value:
+            return EMBEDFIRE_SEEED_NPI
+        return None
+
     def _tegra_id(self):
         """Try to detect the id of aarch64 board."""
         board_value = self.detector.get_device_model()
@@ -460,6 +472,11 @@ class Board:
         return self.CORAL_EDGE_TPU_DEV
 
     @property
+    def any_npi_board(self):
+        """Check whether the current board is any defined npi."""
+        return self.EMBEDFIRE_SEEED_NPI
+
+    @property
     def any_giant_board(self):
         """Check whether the current board is any defined Giant Board."""
         return self.GIANT_BOARD
@@ -485,7 +502,7 @@ class Board:
         return self.any_raspberry_pi or self.any_beaglebone or \
          self.any_orange_pi or self.any_giant_board or self.any_jetson_board or \
          self.any_coral_board or self.any_odroid_40_pin or self.any_96boards or \
-         self.any_sifive_board
+         self.any_sifive_board or self.any_npi_board 
 
     @property
     def ftdi_ft232h(self):

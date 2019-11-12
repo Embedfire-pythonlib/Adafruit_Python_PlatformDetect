@@ -4,6 +4,7 @@ import os
 
 AM33XX = "AM33XX"
 IMX8MX = "IMX8MX"
+IMX6XXX = "IMX6XXX"
 BCM2XXX = "BCM2XXX"
 ESP8266 = "ESP8266"
 SAMD21 = "SAMD21"
@@ -94,6 +95,8 @@ class Chip:
             if compatible and 'amlogic, g12b' in compatible:
                 linux_id = S922X
 
+        elif "i.MX6" in hardware:
+            linux_id = IMX6XXX
         elif hardware in ("BCM2708", "BCM2709", "BCM2835"):
             linux_id = BCM2XXX
         elif "AM33XX" in hardware:
