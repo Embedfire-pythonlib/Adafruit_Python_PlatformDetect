@@ -16,7 +16,7 @@ print("Is this a Raspberry Pi Compute Module?", detector.board.any_raspberry_pi_
 print("Is this a BBB?", detector.board.BEAGLEBONE_BLACK)
 print("Is this a Giant Board?", detector.board.GIANT_BOARD)
 print("Is this a Coral Edge TPU?", detector.board.CORAL_EDGE_TPU_DEV)
-print("Is this a NPi?", detector.board.EMBEDFIRE_SEEED_NPI)
+print("Is this a embedfire IMX6ULL?", detector.board.EMBEDFIRE_IMX6ULL)
 print("Is this a SiFive Unleashed? ", detector.board.SIFIVE_UNLEASHED)
 print("Is this an embedded Linux system?", detector.board.any_embedded_linux)
 print("Is this a generic Linux PC?", detector.board.GENERIC_LINUX_PC)
@@ -30,8 +30,8 @@ if detector.board.any_jetson_board:
 if detector.board.any_orange_pi:
     print("Orange Pi detected.")
 
-if detector.board.EMBEDFIRE_SEEED_NPI:
-    print("Embedfire Seeed NPi detected.")
+if detector.board.EMBEDFIRE_IMX6ULL:
+    print("Embedfire IMX6ULL detected.")
 
 if detector.board.any_odroid_40_pin:
     print("Odroid detected.")

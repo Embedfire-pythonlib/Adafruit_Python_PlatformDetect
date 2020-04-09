@@ -39,8 +39,8 @@ JETSON_NANO                 = 'JETSON_NANO'
 # Google Coral dev board
 CORAL_EDGE_TPU_DEV          = "CORAL_EDGE_TPU_DEV"
 
-# Embedfire Seeed NPi models
-EMBEDFIRE_SEEED_NPI          = "EMBEDFIRE_SEEED_NPI"
+# Embedfire IMX6ULL models
+EMBEDFIRE_IMX6ULL          = "EMBEDFIRE_IMX6ULL"
 
 # Various Raspberry Pi models
 RASPBERRY_PI_B_REV1         = "RASPBERRY_PI_B_REV1"
@@ -411,8 +411,8 @@ class Board:
     def _imx6xxx_id(self):
         """Check what type iMX6XXX board."""
         board_value = self.detector.get_device_model()
-        if "NPi" in board_value:
-            return EMBEDFIRE_SEEED_NPI
+        if "i.MX6ULL" in board_value:
+            return EMBEDFIRE_IMX6ULL
         return None
 
     def _tegra_id(self):
@@ -474,7 +474,7 @@ class Board:
     @property
     def any_npi_board(self):
         """Check whether the current board is any defined npi."""
-        return self.EMBEDFIRE_SEEED_NPI
+        return self.EMBEDFIRE_IMX6ULL
 
     @property
     def any_giant_board(self):
