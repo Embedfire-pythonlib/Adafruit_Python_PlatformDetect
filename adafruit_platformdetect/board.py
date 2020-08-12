@@ -411,7 +411,7 @@ class Board:
     def _imx6xxx_id(self):
         """Check what type iMX6XXX board."""
         board_value = self.detector.get_device_model()
-        if "NPi" in board_value:
+        if "NPi" in board_value or "Embedfire i.MX6ULL" in board_value:
             return EMBEDFIRE_IMX6ULL
         return None
 
